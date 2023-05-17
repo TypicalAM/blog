@@ -1,0 +1,3 @@
+[submodule "blowfish"]
+	path = blowfish
+	url = https://github.com/nunocoracao/blowfish
