@@ -8,15 +8,15 @@ rtl = false
 title = "Piaseczny Blog"
 # logo = "img/logo.png"
 # secondaryLogo = "img/secondary-logo.png"
-# description = "My awesome website"
+description = "My awesome blog"
 # copyright = "Copy, _right?_ :thinking_face:"
 
 dateFormat = "2 January 2006"
 
 [author]
   name = "Adam Piaseczny"
-  image = "img/blowfish_logo.png"
-  headline = "I'm only human"
+  image = "img/avatar.png"
+  headline = "Making the web a better place"
   bio = "A passionate full stack developer from Poland"
 #   links = [
 #     { email = "mailto:hello@your_domain.com" },
