@@ -14,7 +14,7 @@ Welcome to the world of generics in Go! Generics provide a powerful toolset that
 
 ## Why do generics?
 
-There has been a moment for me when I was told that I was probably never going to use generics in my daily life and that their existence is more important for creating data structures like *heaps* and *linked lists*. But sometimes good uses for generics just appear in plain sight and they are not that difficult! Let us jump to a problem shall we?
+There has been a moment for me when I was told that I was probably never going to use generics in my daily life and that their existence is more important for creating libraries. But sometimes good uses for generics just appear in plain sight and they are not that difficult! Let us jump to a problem shall we?
 
 ### Linear searching
 
@@ -70,7 +70,7 @@ func main() {
 }
 ```
 
-But what about if the slice was made of `Snail` objects!? As you can probably see there are a lot of things we can apply this operation too and we don't really want to write more code everytime we have a new set of data.
+But what about if the slice was made of `Snail` objects!? As you can probably see there are a lot of things we can apply this operation to and we don't really want to write more code everytime we have a new set of data.
 
 ### Linear searching with generics
 
