@@ -8,7 +8,7 @@ rtl = false
 title = "/dev/random"
 # logo = "img/logo.png"
 # secondaryLogo = "img/secondary-logo.png"
-description = "Premature abstraction is the root of all evil"
+description = "Software stuff"
 # copyright = "Copy, _right?_ :thinking_face:"
 
 dateFormat = "2 January 2006"
@@ -16,8 +16,8 @@ dateFormat = "2 January 2006"
 [author]
   name = "Adam Piaseczny"
   image = "img/avatar.png"
-  headline = "Premature abstraction is the root of all evil"
-  bio = "A random software developer from Poland"
+  headline = "Software stuff"
+  bio = "A passionate software developer from Poland"
 #   links = [
 #     { email = "mailto:hello@your_domain.com" },
 #     { link = "https://link-to-some-website.com/" },
