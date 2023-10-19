@@ -4,7 +4,7 @@ summary: "Learn asynchronous Python while crafting a heartfelt digital present f
 tags: ["python","discord","async"]
 #showSummary: true
 date: 2023-08-16
-draft: false
+draft: true
 ---
 
 ## Introduction

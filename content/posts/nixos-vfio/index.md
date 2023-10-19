@@ -4,7 +4,7 @@ summary: "Unlock the potential of GPU passthrough on NixOS and supercharge your 
 tags: ["nixos", "vfio", "virtualization"]
 #showSummary: true
 date: 2023-08-16
-draft: false
+draft: true
 ---
 
 ## Introduction
