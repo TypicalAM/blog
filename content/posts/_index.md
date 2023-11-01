@@ -1,18 +1,10 @@
 ---
 title: "Posts"
-date: 2022-06-13T20:55:37+01:00
-draft: false
+description: "My thoughts on computers in general."
 
-showDate : false
-showDateUpdated : false
-showHeadingAnchors : false
-showPagination : false
-showReadingTime : false
-showTableOfContents : true
-showTaxonomies : false 
-showWordCount : false
-showSummary : false
-sharingLinks : false
-
+cascade:
+  showDate : true
+  showReadingTime : true
 ---
 
+**My thoughts/guides on many things computer.**. Kinda new to this hugo stuff, so if you see something dangerous remember that **Learning is a process.**. Things on here I consider cool and funky *and sometimes even useful!*
