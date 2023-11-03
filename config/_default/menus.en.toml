@@ -11,15 +11,22 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
+	pre = "edit"
   name = "Posts"
   pageRef = "posts"
+  weight = 5
+
+[[main]]
+	pre = "code"
+  name = "Projects"
+  pageRef = "projects"
   weight = 10
 
 [[main]]
   pre = "github"
   name = "GitHub"
   url = "https://github.com/TypicalAM/"
-  weight = 30
+  weight = 15
 
 #[[main]]
 #  name = "Parent"
