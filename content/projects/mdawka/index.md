@@ -1,6 +1,6 @@
 ---
-title: "mDawka - e-recepta pill scheduler"
-summary: "A smart and easy pill scheduler"
+title: "mDawka - Smart Pill Scheduler"
+summary: "A smart and easy pill scheduler based on the Polish e-recepta"
 tags: ["golang","echo","react","hackathon"]
 date: 2023-11-01
 draft: false

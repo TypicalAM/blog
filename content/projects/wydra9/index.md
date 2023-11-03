@@ -1,5 +1,5 @@
 ---
-title: "wydra9 - nix server"
+title: "wydra9 - NixOS Server"
 summary: "A resilient website, you are reading content on it after all"
 tags: ["nixos","website","sysadmin","traefik"]
 date: 2023-11-01

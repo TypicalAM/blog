@@ -1,5 +1,5 @@
 ---
-title: "Minecraft Disord Bot"
+title: "Minecraft Discord Bot"
 summary: "Run your mc server locally with ease"
 tags: ["discord","minecraft","python"]
 date: 2023-11-01

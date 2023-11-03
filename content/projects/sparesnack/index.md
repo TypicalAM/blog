@@ -1,5 +1,5 @@
 ---
-title: "SpareSnack - diet assistant"
+title: "SpareSnack - Diet Management"
 summary: "Your diet is safe with me"
 tags: ["django","webdev","python"]
 date: 2023-11-01

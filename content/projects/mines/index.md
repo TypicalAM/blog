@@ -1,5 +1,5 @@
 ---
-title: "mines - cool minesweeper"
+title: "mines - Sleek Minesweeper"
 summary: "Sweep the mines in raylib with a sweet interface"
 tags: ["golang","raylib","games"]
 date: 2023-11-01
