@@ -14,6 +14,7 @@ draft: false
 - Create your own board configurations
 - Use and create custom themes!
 - Make it onto the leaderboard
+- Use a PS3 controller to play!
 
 ## Why make it?
 
