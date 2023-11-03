@@ -3,6 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 baseURL = "https://blog.piaseczny.dev/"
+timeout = "1000s"
 theme = "blowfish"
 defaultContentLanguage = "en"
 
