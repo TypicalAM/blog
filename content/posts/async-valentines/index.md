@@ -3,7 +3,7 @@ title: "Sending Love Across Servers: Creating a small Discord Bot"
 summary: "Learn async Python while crafting a heartfelt digital present for your loved one."
 tags: ["python", "discord", "async"]
 #showSummary: true
-date: 2024-02-11
+date: 2024-02-12
 draft: false
 ---
 
@@ -216,3 +216,7 @@ async def randomize_activity():
 ```
 
 *NOTE: I already told you, the scheduler is watching...* 
+
+## Conclusion
+
+In conclusion, we've embarked on a journey to create a small Discord bot that sends cute daily messages to a special person and by including the ability to change the bot's activity dynamically, we added a touch of variety to keep things interesting. **Feel free to customize and expand upon this, adding more features or personal touches. Bye!**
