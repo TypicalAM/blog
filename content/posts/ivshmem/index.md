@@ -327,4 +327,6 @@ While messing around and improving on this example I got speeds up to `4Gbps`, w
 
 ## Epilogue
 
-Overall I'm very proud of myself, since this is the first time I've actually created a library instead of a standalone app. I learned a lot about virtualisastion systems, how PCI works and how to use `.dll` files easily on windows. If you want to want to see how to use a driver inside of a `go` application you can visit [the guest code](https://github.com/TypicalAM/ivshmem/blob/main/guest_windows.go#L94)! I hope you got to know something more by reading this too! 
+Overall I'm very proud of myself, since this is the first time I've actually created a library instead of a standalone app. I learned a lot about virtualization systems, how PCI works and how to use `.dll` files easily on windows. If you want to want to see how to use a driver inside of a `go` application you can visit [the guest code](https://github.com/TypicalAM/ivshmem/blob/main/guest_windows.go#L94)! I hope you got to know something more by reading this too! 
+
+*Cover photo by Jeremy Waterhouse on [pexels](https://www.pexels.com/photo/green-and-black-circuit-board-3665442)*
