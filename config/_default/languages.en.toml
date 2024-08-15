@@ -1,17 +1,17 @@
+title = "/dev/random"
 languageCode = "en"
 languageName = "English"
-displayName = "EN"
-isoCode = "en"
 weight = 1
-rtl = false
 
-title = "/dev/random"
-# logo = "img/logo.png"
-# secondaryLogo = "img/secondary-logo.png"
-description = "Software stuff"
-# copyright = "Copy, _right?_ :thinking_face:"
-
-dateFormat = "2 January 2006"
+[params]
+  rtl = false
+  description = "Software stuff"
+  # logo = "img/logo.png"
+  # secondaryLogo = "img/secondary-logo.png"
+  # copyright = "Copy, _right?_ :thinking_face:"
+  dateFormat = "2 January 2006"
+  displayName = "EN"
+  isoCode = "en"
 
 [author]
   name = "Adam Piaseczny"
