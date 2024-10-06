@@ -11,7 +11,7 @@ draft: true
 
 A lot of the hackers that I got to know in [PUT Request](https://putrequest.put.poznan.pl/) started their journey **hacking wifi networks.** Using the [aircrack-ng](https://www.aircrack-ng.org/) suite is very friendly to script kiddies so it suddenly becomes really easy to call yourself a `cr4zy h4x0r`. Never used it? Just **look at this** juicy `airodump` screenshot and **imagine that you are 12 years old:**
 
-![airdoump screenshot](airodump.png)
+![airodump screenshot](airodump.png)
 
 Ever wondered how these tools worked? **I did, so for my [engineering thesis](https://github.com/TypicalAM/Yarilo/) I decided to build a better `aircrack` from scratch**. Would you like to build something like that too? If so, maybe this post will prove somewhat helpful at understanding the high-level concepts. Let's sniff some wifi networks!
 
@@ -19,7 +19,7 @@ Ever wondered how these tools worked? **I did, so for my [engineering thesis](ht
 
 ## Setting yourself up for success
 
-Our end goal is being able to view data payloads from other users in a basic, secured home wireless network (`WPA2-PSK`). This post is more on the theoretical side, altough you can try doing this at home and exploring some of the things that I will be talking about using a *monitor-enabled* wireless network card (like my `TP-Link Archer T3U Nano`). Enable `monitor mode` on the card using:
+Our end goal is being able to view data payloads from other users in a basic, secured home wireless network (`WPA2-PSK`). This post is more on the theoretical side, although you can try doing this at home and exploring some of the things that I will be talking about using a *monitor-enabled* wireless network card (like my `TP-Link Archer T3U Nano`). Enable `monitor mode` on the card using:
 
 ```sh
 sudo iw phy phy1 interface add mon0 type monitor
@@ -39,7 +39,7 @@ Then you can use [wireshark](https://www.wireshark.org/) on `mon0` to capture tr
 - [Radiotap](https://www.radiotap.org/) for the physical layer information - your network card basically gives you an additional layer of physical information while sniffing, like `RSSI` (Received Signal Strength Indicator) and a radio noise indicator
 - [802.11](https://www3.nd.edu/~mhaenggi/NET/wireless/802.11b/Data%20Link%20Layer.htm) for the data link layer, there are basically three main types of frames here:
   - **Management** frames - Allowing nodes to join/leave the network, authentication, association, etc.
-  - **Data** frames – Carring data from higher layers
+  - **Data** frames – Carrying data from higher layers
   - **Control** frames - Acknowledging the delivery of data frames and clearing the medium for transmission
 
 ![visualisation of the ISO OSI layer differences between ether2 and radiotap](80211_visualisation.png)
@@ -78,7 +78,7 @@ Now what do we know:
 - MAC (AA) - Hardware address of the access point
 - MAC (SA) - Hardware address of the client
 
-Now we can see that if we **capture the first two EAPOL messages, we can derive the encryption key!**, provided that we had the password to the network to begin with. So knowing the passsword of the network and capturing the moment a client connects allows us to ***easily* decrypt the *unicast* traffic of the client**. You can do this in wireshark using [this link](https://wiki.wireshark.org/HowToDecrypt802.11). But wait Adam! We just now needed only two `EAPOL` messages, what about the rest??? 
+Now we can see that if we **capture the first two EAPOL messages, we can derive the encryption key!**, provided that we had the password to the network to begin with. So knowing the password of the network and capturing the moment a client connects allows us to ***easily* decrypt the *unicast* traffic of the client**. You can do this in wireshark using [this link](https://wiki.wireshark.org/HowToDecrypt802.11). But wait Adam! We just now needed only two `EAPOL` messages, what about the rest??? 
 
 ### Group traffic
 
@@ -97,7 +97,7 @@ In real life this scenario is resolved like this -
 
 So... new key huh? How do we get it? **Ah, right, more EAPOL messages**. The **third** EAPOL message should have a special payload: a fresh new `GTK` key encrypted with your `PTK`, so that only you can access it. Once we get that everything is fair game, **we can decrypt both unicast traffic and group traffic with our `PTK` and `GTK`. Yipee!**
 
->If you're wondering, the last `EAPOL` messsage just makes sure that the encryption keys are installed on the target and we can bgin a secure communication session
+>If you're wondering, the last `EAPOL` message just makes sure that the encryption keys are installed on the target and we can begin a secure communication session
 
 ### Rekeying
 
@@ -128,7 +128,7 @@ Setting up a `WPA2` or `WPA3` enterprise network is much harder than setting up 
 - `WPA2` uses `EAPOL` messages for authentication, if they are intercepted it's not fun
 - There are two session keys: a pairwise one and a group one
 - Configure rekeying on your router (if you can)
-- Have a strong password! Bruteforcing the key is very unfeasable, unless your password is `12345678` of course 
+- Have a strong password! Bruteforcing the key is very unfeasible, unless your password is `12345678` of course 
 - Basic wireless networks are a tad bit more complicated than ethernet ones
 
 **If you want to build a traffic decrypter yourself, here are the things you would need:**
@@ -141,6 +141,6 @@ Setting up a `WPA2` or `WPA3` enterprise network is much harder than setting up 
 
 ![Bear sniffing you!](sniffer.png)
 
-*Above photo taken from the genious `libpcap` introduction from Martin Casado: http://yuba.stanford.edu/~casado/pcap/section1.html*
+*Above photo taken from the genius `libpcap` introduction from Martin Casado: http://yuba.stanford.edu/~casado/pcap/section1.html*
 
 *Cover photo by Photo Source Kaboompics.com: https://www.pexels.com/photo/close-up-of-dog-nose-5420750/*
