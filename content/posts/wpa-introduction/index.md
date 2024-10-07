@@ -4,7 +4,7 @@ summary: "Ever wondered how aircrack works? Exploring robust security networks (
 tags: ["hacking", "wpa"]
 #showSummary: true
 date: 2024-10-05
-draft: true
+draft: false
 ---
 
 ## Introduction
@@ -13,13 +13,13 @@ A lot of the hackers that I got to know in [PUT Request](https://putrequest.put.
 
 ![airodump screenshot](airodump.png)
 
-Ever wondered how these tools worked? **I did, so for my [engineering thesis](https://github.com/TypicalAM/Yarilo/) I decided to build a better `aircrack` from scratch**. Would you like to build something like that too? If so, maybe this post will prove somewhat helpful at understanding the high-level concepts. Let's sniff some wifi networks!
+Ever wondered how these tools worked? I did, so for my [engineering thesis](https://github.com/TypicalAM/Yarilo/) I decided to build a better `aircrack` from scratch. There aren't many resources available about the process so I decided to write this post to possibly benefit others embarking on the same journey. **This post is basically about modern home network security - Let's sniff some networks!**
 
 > DISCLAIMER: PLEASE DO NOT DECRYPT NETWORKS THAT ARE NOT YOURS. PLEASE
 
 ## Setting yourself up for success
 
-Our end goal is being able to view data payloads from other users in a basic, secured home wireless network (`WPA2-PSK`). This post is more on the theoretical side, although you can try doing this at home and exploring some of the things that I will be talking about using a *monitor-enabled* wireless network card (like my `TP-Link Archer T3U Nano`). Enable `monitor mode` on the card using:
+Our end goal is being able to view data payloads from other users in a basic, secured home wireless network (`WPA2-PSK`). This post is more on the theoretical side, although you can try doing this at home and exploring some of the things that I will be talking about using a *rfmon-enabled* wireless network card (like my `TP-Link Archer T3U Nano`). Enable `monitor mode` on the card using:
 
 ```sh
 sudo iw phy phy1 interface add mon0 type monitor
@@ -29,9 +29,9 @@ sudo ip link set mon0 up
 
 Then you can use [wireshark](https://www.wireshark.org/) on `mon0` to capture traffic from the networks around you.
 
-## Something something network card
+## WiFi data link
 
-**Wi-Fi devices have to communicate *somehow* and if it's not telekineses it's probably radio communication.** Radio means that even if you are not the intended recipient of the message you might be able to catch something by, well, just listening to the radio signals. That is what `monitor` mode is on, you basically tell your network interface card to behave like my girlfriend when I bring takeaway food home:
+**Wi-Fi devices have to communicate *somehow* and if it's not telekinesis it's probably radio communication.** Radio means that even if you are not the intended recipient of the message you might be able to catch something by, well, just listening to the radio signals. That is what `monitor` mode is about, you basically tell your network interface card to behave like my girlfriend when I bring takeaway food home:
 
 ![is it for me](isitforme.png)
 
@@ -51,7 +51,7 @@ Then you can use [wireshark](https://www.wireshark.org/) on `mon0` to capture tr
 Adam, why this long intro, why do I care? While looking at the packets in wireshark (or thinking about them) you might have noticed that they are, most likely, encrypted. In our example case, we are using `WPA2PSK` - what does that mean?
 - `WPA2` means that we are using the second iteration of the "Robust Security Network" standard - Wi-Fi Protected Access 2
 - `PSK` means Pre-Shared-Key, so all users have access to the same key which allows authenticating into the network.
-- Most `WPA2` prefer using an [AES](https://pl.wikipedia.org/wiki/Advanced_Encryption_Standard)-based block encryption cipher - `AES-CCM` - Counter Mode with Cipher Block Chaining Message Authentication Code - **I know the letters don't match, don't ask**
+- Most `WPA2` prefer using an [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)-based block encryption cipher - `AES-CCM` - Counter Mode with Cipher Block Chaining Message Authentication Code - **I know the letters don't match, don't ask**
 
 Since we are using `AES`, we are using a session key for encryption which is obtained using the process of authentication. This key must somehow be related to:
 - The PSK, meaning basically the password to the network
@@ -82,7 +82,7 @@ Now we can see that if we **capture the first two EAPOL messages, we can derive 
 
 ### Group traffic
 
-Think about the following scenario, we want to send an `ARP` packet to know who has the `192.168.0.50` IP address. This packet is sent to all clients of the network, so we use the broadcast MAC address (`ff:ff:ff:ff:ff:ff`). We don't know what encryption keys other people on the network use, so we can't send them data that they can decrypt, right?
+Think about the following scenario, we want to send an Address Resolution Protocol (`ARP`) packet to ask who has the `192.168.0.50` IP address. This packet is sent to all clients of the network, so we use the broadcast MAC address (`ff:ff:ff:ff:ff:ff`). We don't know what encryption keys other people on the network use, so we can't send them data that they can decrypt, right?
 
 ![confusion while sending a broadcast ARP packet](arp.png)
 
@@ -95,7 +95,7 @@ In real life this scenario is resolved like this -
 
 ![no more confusion with ARP - GTK](gtk.png)
 
-So... new key huh? How do we get it? **Ah, right, more EAPOL messages**. The **third** EAPOL message should have a special payload: a fresh new `GTK` key encrypted with your `PTK`, so that only you can access it. Once we get that everything is fair game, **we can decrypt both unicast traffic and group traffic with our `PTK` and `GTK`. Yipee!**
+So... new key huh? How do we get it? **Ah, right, more EAPOL messages**. The **third** EAPOL message should have a special payload: a fresh new `GTK` key encrypted with your `PTK`, so that only you can access it. Once we get that everything is fair game, **we can decrypt both unicast traffic and group traffic with our `PTK` and `GTK`. Yippee!**
 
 >If you're wondering, the last `EAPOL` message just makes sure that the encryption keys are installed on the target and we can begin a secure communication session
 
@@ -132,7 +132,7 @@ Setting up a `WPA2` or `WPA3` enterprise network is much harder than setting up 
 - Basic wireless networks are a tad bit more complicated than ethernet ones
 
 **If you want to build a traffic decrypter yourself, here are the things you would need:**
-- Packet sniffer library (using raw `libpcap` is exponentially harder) - I used [libtins (C++)](http://libtins.github.io/)
+- Packet sniffer library (using raw [libpcap](https://www.tcpdump.org/) is exponentially harder) - I used [libtins (C++)](http://libtins.github.io/)
 - Good reading skills, patience and the [802.11 standard](https://www.candelatech.com/downloads/802.11-2016.pdf)
 - Monitor-capable network card - `TP-Link Archer T3U Nano` is very nice
 - `AES-CCMP` magic, like the one [seen here](https://github.com/TypicalAM/Yarilo/blob/cc84d434fb63e57fe868258e3fcdf30a0332cd3f/backend/src/group_decrypter.cpp#L57), also `CCM` mode is loosely based on `CTR`, so the order of the messages matters ;)))))
@@ -140,6 +140,8 @@ Setting up a `WPA2` or `WPA3` enterprise network is much harder than setting up 
 **And most importantly: don't get sniffed!**
 
 ![Bear sniffing you!](sniffer.png)
+
+> If you want to see my engineering project in action, you can try running it with the instructions available in the [GitHub repository](https://github.com/TypicalAM/Yarilo/)!
 
 *Above photo taken from the genius `libpcap` introduction from Martin Casado: http://yuba.stanford.edu/~casado/pcap/section1.html*
 
