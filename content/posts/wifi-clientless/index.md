@@ -23,7 +23,7 @@ The last time we atacked our example theoretical work network using `WPA2PSK` we
 - **Catch the 4-way `EAPOL` handshake** messages, gather both the `PTK` and the `GTK`
 - **Decrypt all of the traffic and wreak havoc**
 
-This approach allows us to decrypt all group traffic, since the GTK is shared among all the connected clients for at least the duration of the client connection (the AP can initiate a key rotation later). It also allows us to catch and decrypt all the LAN traffic directed to and from this client, **this includes the default gateway - our bridge to the wide area network (WAN)**. But what if do not now the password of the network? We cannot construct the `PMK`, validate the `EAPOL` through message integrity checks (`MIC`) in the 4-way exchange and we are also miserable in any other way possible. This begs the question - **How can we recover a password?**
+This approach allows us to decrypt all group traffic, since the GTK is shared among all the connected clients for at least the duration of the client connection (the AP can initiate a key rotation later). It also allows us to catch and decrypt all the LAN traffic directed to and from this client, **this includes the default gateway - our bridge to the wide area network (WAN)**. But what if do not know the password of the network? We cannot construct the `PMK`, validate the `EAPOL` through message integrity checks (`MIC`) in the 4-way exchange and we are also miserable in any other way possible. This begs the question - **How can we recover a password?**
 
 ## PMKID
 
