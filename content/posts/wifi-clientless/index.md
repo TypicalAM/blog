@@ -94,3 +94,4 @@ I hope you learned something new about wireless security by reading this article
 
 ![Bear sniffing you!](sniffer.png)
 
+*Photo by cottonbro studio: https://www.pexels.com/photo/pigs-on-wooden-pigpen-10641996/*
