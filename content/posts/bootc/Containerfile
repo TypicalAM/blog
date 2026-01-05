@@ -1,0 +1,9 @@
+FROM quay.io/fedora/fedora-kinoite:43@sha256:18a5bee9b6163a51418401c60330e47ed2b43347970faa3943e27a17be13f06f
+
+# Add tailscale to the mix
+RUN dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+RUN dnf install -y tailscale
+RUN systemctl enable tailscaled
+
+# Look for common issues, like stray files in /var
+RUN bootc container lint
